@@ -1,5 +1,6 @@
 # Insuvit Web & Admin Dashboard 🚀
 
+![Public Landing Page](./docs/public-preview.png)
 ![Admin Login Preview](./docs/admin-login-preview.png)
 ![Admin Dashboard Preview](./docs/admin-dashboard-preview.png)
 
