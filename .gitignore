@@ -5,7 +5,7 @@ insuvit_tmp
 insuvit_vtest
 
 # Database SQLite (di-generate otomatis saat run; jangan di-commit)
-*.db
+# *.db
 *.db-journal
 *.db-wal
 *.db-shm
