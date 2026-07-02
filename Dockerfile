@@ -27,8 +27,9 @@ COPY --from=builder /app/insuvit-server .
 # Copy folder web (template HTML dan static assets)
 COPY --from=builder /app/web ./web
 
-# Buat folder data untuk SQLite dengan hak akses
-RUN mkdir -p data && chmod 777 data
+# Copy folder data (database SQLite) untuk mempertahankan isi database
+COPY --from=builder /app/data ./data
+RUN chmod -R 777 data
 
 # Buka port 8080 (Bisa ditimpa oleh env PORT)
 EXPOSE 8080

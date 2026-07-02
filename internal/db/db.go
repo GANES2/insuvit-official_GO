@@ -181,10 +181,10 @@ func seedProducts(conn *sql.DB) error {
 	}
 	shopee := "https://shopee.co.id/insuvit_official"
 	items := []models.Product{
-		{Name: "Teh Insuvit Herbal — Isi 15 Teabag", Description: "Kemasan pouch isi 15 teh celup herbal rempah, cocok untuk mencoba pertama kali sebelum konsumsi rutin.", MetaLeft: "Mulai Rp13.000*", MetaRight: "1 Pouch", Image: "product-1.png", ShopeeURL: shopee, Badge: "Tersedia di Shopee", Ribbon: "Terlaris", SortOrder: 1, IsActive: true},
-		{Name: "Teh Insuvit Herbal Original — Isi 30 Teabag", Description: "Kemasan satu bungkus isi 30 teh celup, varian original untuk konsumsi rutin sesuai petunjuk pada kemasan.", MetaLeft: "1 Bungkus", MetaRight: "Tersedia di Shopee", Image: "product-2.png", ShopeeURL: shopee, Badge: "Tersedia di Shopee", Ribbon: "", SortOrder: 2, IsActive: true},
-		{Name: "Paket Isi Banyak — hingga 160 Teabag", Description: "Pilihan isi besar untuk persediaan konsumsi rutin, dengan harga mengikuti toko resmi Shopee.", MetaLeft: "Stok rutin", MetaRight: "Cek harga di Shopee", Image: "product-3.png", ShopeeURL: shopee, Badge: "Tersedia di Shopee", Ribbon: "", SortOrder: 3, IsActive: true},
-		{Name: "Paket Hemat Insuvit", Description: "Bundling teh celup herbal untuk persediaan konsumsi rutin pagi dan malam sesuai aturan pakai pada kemasan, dengan harga mengikuti toko resmi Shopee.", MetaLeft: "Bundling", MetaRight: "COD Shopee", Image: "product-4.png", ShopeeURL: shopee, Badge: "Tersedia di Shopee", Ribbon: "", SortOrder: 4, IsActive: true},
+		{Name: "Teh Insuvit Herbal — Isi 15 Teabag", Description: "Kemasan pouch isi 15 teh celup herbal rempah, cocok untuk mencoba pertama kali sebelum konsumsi rutin.", MetaLeft: "Mulai Rp13.000*", MetaRight: "1 Pouch", Image: "product-5.jpeg", ShopeeURL: shopee, Badge: "Tersedia di Shopee", Ribbon: "Terlaris", SortOrder: 1, IsActive: true},
+		{Name: "Teh Insuvit Herbal Original — Isi 30 Teabag", Description: "Kemasan satu bungkus isi 30 teh celup, varian original untuk konsumsi rutin sesuai petunjuk pada kemasan.", MetaLeft: "1 Bungkus", MetaRight: "Tersedia di Shopee", Image: "product-6.jpeg", ShopeeURL: shopee, Badge: "Tersedia di Shopee", Ribbon: "", SortOrder: 2, IsActive: true},
+		{Name: "Paket Isi Banyak — hingga 160 Teabag", Description: "Pilihan isi besar untuk persediaan konsumsi rutin, dengan harga mengikuti toko resmi Shopee.", MetaLeft: "Stok rutin", MetaRight: "Cek harga di Shopee", Image: "product-7.jpeg", ShopeeURL: shopee, Badge: "Tersedia di Shopee", Ribbon: "", SortOrder: 3, IsActive: true},
+		{Name: "Paket Hemat Insuvit", Description: "Bundling teh celup herbal untuk persediaan konsumsi rutin pagi dan malam sesuai aturan pakai pada kemasan, dengan harga mengikuti toko resmi Shopee.", MetaLeft: "Bundling", MetaRight: "COD Shopee", Image: "product-8.jpeg", ShopeeURL: shopee, Badge: "Tersedia di Shopee", Ribbon: "", SortOrder: 4, IsActive: true},
 	}
 	for _, p := range items {
 		if _, err := conn.Exec(
