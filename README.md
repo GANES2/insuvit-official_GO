@@ -1,13 +1,28 @@
-# Insuvit Web Platform 🚀
+# Insuvit Web & Admin Dashboard 🚀
+
+![Admin Dashboard Preview](./docs/admin-login-preview.png)
+*(Catatan: Silakan ganti path gambar di atas dengan lokasi asli file foto screenshot/dashboard Anda)*
+
+**🌐 Live Website:** [https://insuvitofficial-4f5vpe8y.b4a.run](https://insuvitofficial-4f5vpe8y.b4a.run)
 
 [![Go Version](https://img.shields.io/badge/Go-1.22+-00ADD8?style=for-the-badge&logo=go)](https://go.dev/)
 [![HTMX](https://img.shields.io/badge/HTMX-1.9.10-336699?style=for-the-badge&logo=htmx)](https://htmx.org/)
 [![Alpine.js](https://img.shields.io/badge/Alpine.js-3.13.3-8BC0D0?style=for-the-badge&logo=alpine.js)](https://alpinejs.dev/)
 [![SQLite](https://img.shields.io/badge/SQLite-Database-003B57?style=for-the-badge&logo=sqlite)](https://www.sqlite.org/)
+[![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
 
-Platform profil perusahaan dan dashboard admin modern yang dibangun menggunakan arsitektur **Hypermedia-Driven Application (HDA)**. Insuvit memadukan kecepatan backend Golang murni dengan interaktivitas frontend yang ringan tanpa menggunakan *bloated SPA frameworks*.
+## 📖 The Story
 
-## ✨ Fitur Utama (Features)
+I built a blazing-fast branding site and custom CMS for an herbal tea business. Instead of defaulting to heavy frontend frameworks like React or Vue, I wanted to prove that web apps can still be incredibly fast, lightweight, and maintainable. By combining Golang on the backend with HTMX on the frontend, I delivered a snappy, SPA-like experience with a fraction of the JavaScript payload.
+
+## ✨ What I Built
+
+- **Custom Admin Dashboard:** I didn't want to use a bloated, off-the-shelf CMS. I built a tailored, intuitive dashboard using Go & SQLite so the business owners can manage their content (Products, FAQs, Testimonials) seamlessly.
+- **Hypermedia-Driven UI with HTMX:** Swapped JSON APIs and heavy client-side state for hypermedia. The result? Smooth, dynamic page transitions without the overhead of a traditional SPA.
+- **Crafted with Vanilla CSS:** No Tailwind, no Bootstrap. I built the entire design system from scratch using pure CSS, implementing modern aesthetics like Glassmorphism and scroll-reveal animations to keep the UI feeling premium.
+- **Dockerized & Cloud-Ready:** Packaged the whole stack into a Docker container for a frictionless, platform-agnostic deployment pipeline.
+
+## ⚙️ Technical Features
 
 *   **🔒 Secure Admin Dashboard**: Autentikasi berbasis *Session* dengan proteksi enkripsi sandi **Bcrypt**.
 *   **⚡ Hypermedia-Driven UI**: Navigasi *dashboard* tanpa ralat (*seamless*) menggunakan **HTMX** (tanpa perlu *reload* halaman penuh).
