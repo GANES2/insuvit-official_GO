@@ -43,7 +43,10 @@ func main() {
 		log.Println("Note: No .env file found or failed to load, falling back to OS environment variables")
 	}
 
-	addr := env("ADDR", ":8080")
+	// Dukungan untuk Render.com (Render menggunakan env PORT)
+	port := env("PORT", "8080")
+	addr := env("ADDR", ":"+port)
+	
 	dbPath := env("DB_PATH", "data/insuvit.db")
 	webDir := env("WEB_DIR", "web")
 	adminUser := env("ADMIN_USER", "admin")
