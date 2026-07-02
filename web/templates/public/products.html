@@ -1,0 +1,31 @@
+{{define "products"}}
+<section class="products section-padding" id="paket">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Pilihan Paket Insuvit</h2>
+        <p>Varian paket yang tersedia di toko Shopee resmi Insuvit</p>
+      </div>
+
+      <div class="products-grid">
+        {{range .Products}}
+        <div class="product-card fade-in">
+          <div class="product-image">
+            {{if .Ribbon}}<div class="ribbon-bestseller">{{.Ribbon}}</div>{{end}}
+            <img src="/static/images/{{.Image}}" alt="{{.Name}}" loading="lazy">
+            <span class="shopee-badge">{{.Badge}}</span>
+          </div>
+          <div class="product-info">
+            <h3>{{.Name}}</h3>
+            <p>{{.Description}}</p>
+            <div class="product-meta"><span>{{.MetaLeft}}</span><span>{{.MetaRight}}</span></div>
+            <a href="/r/shopee?id={{.ID}}" target="_blank" rel="noopener noreferrer" class="btn btn-shopee">Lihat di Shopee</a>
+          </div>
+        </div>
+        {{end}}
+      </div>
+
+      <p class="product-note fade-in">*Harga, promo, jumlah paket, dan rating dapat berubah mengikuti data terbaru di
+        toko Shopee resmi Insuvit.</p>
+    </div>
+  </section>
+{{end}}

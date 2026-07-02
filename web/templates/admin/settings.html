@@ -1,0 +1,332 @@
+{{define "settings"}}{{template "adminhead" .}}
+    <div class="page-head">
+      <div>
+        <h2>Pengaturan</h2>
+        <div class="page-head-sub">Kelola identitas situs, konten, tautan, dan informasi marketplace Anda.</div>
+      </div>
+    </div>
+
+    {{if .Error}}
+    <div class="alert-box alert-danger">
+      <i data-feather="alert-circle" style="width:18px;height:18px;flex-shrink:0;"></i>
+      <span>{{.Error}}</span>
+    </div>
+    {{end}}
+    {{if .Success}}
+    <div class="alert-box alert-success">
+      <i data-feather="check-circle" style="width:18px;height:18px;flex-shrink:0;"></i>
+      <span>{{.Success}}</span>
+    </div>
+    {{end}}
+
+    <!-- ===== FORM PENGATURAN SITUS ===== -->
+    <form method="post" action="/admin/settings" id="settingsForm">
+      <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+
+      <div class="settings-grid">
+
+        <!-- KOLOM KIRI -->
+        <div class="settings-col">
+
+          <!-- Section: Identitas & SEO -->
+          <div class="settings-section">
+            <div class="settings-section-header">
+              <div class="settings-section-icon"><i data-feather="globe"></i></div>
+              <div>
+                <div class="settings-section-title">Identitas &amp; SEO</div>
+                <div class="settings-section-desc">Judul, meta description, dan keywords untuk mesin pencari.</div>
+              </div>
+            </div>
+            <div class="settings-section-body">
+              <label>
+                <span class="field-label"><i data-feather="type" style="width:14px;height:14px;color:var(--green-dark);"></i> Judul Situs</span>
+                <input type="text" name="site_title" value="{{.Settings.site_title}}" placeholder="Insuvit — Teh Herbal Diabetes">
+              </label>
+              <label>
+                <span class="field-label"><i data-feather="file-text" style="width:14px;height:14px;color:var(--green-dark);"></i> Meta Deskripsi (SEO)</span>
+                <textarea name="meta_description" rows="2" placeholder="Deskripsi singkat untuk hasil pencarian Google...">{{.Settings.meta_description}}</textarea>
+              </label>
+              <label>
+                <span class="field-label"><i data-feather="hash" style="width:14px;height:14px;color:var(--gold);"></i> Keywords (SEO)</span>
+                <input type="text" name="meta_keywords" value="{{.Settings.meta_keywords}}" placeholder="Insuvit, Teh Herbal, UMKM, Shopee">
+              </label>
+            </div>
+          </div>
+
+          <!-- Section: Konten Hero & Footer -->
+          <div class="settings-section settings-section-grow">
+            <div class="settings-section-header">
+              <div class="settings-section-icon" style="background:rgba(89,148,100,0.12);color:var(--green-light);"><i data-feather="layout"></i></div>
+              <div>
+                <div class="settings-section-title">Konten Hero &amp; Footer</div>
+                <div class="settings-section-desc">Teks utama yang tampil di bagian atas dan bawah halaman publik.</div>
+              </div>
+            </div>
+            <div class="settings-section-body">
+              <div class="grid2">
+                <label>
+                  <span class="field-label"><i data-feather="bold" style="width:14px;height:14px;color:var(--green-dark);"></i> Judul Hero (H1)</span>
+                  <input type="text" name="hero_title" value="{{.Settings.hero_title}}" placeholder="Insuvit Teh Herbal">
+                </label>
+                <label>
+                  <span class="field-label"><i data-feather="italic" style="width:14px;height:14px;color:var(--green-dark);"></i> Subjudul Hero</span>
+                  <input type="text" name="hero_subtitle" value="{{.Settings.hero_subtitle}}" placeholder="Sehat Tanpa Obat Kimia">
+                </label>
+              </div>
+              <label>
+                <span class="field-label"><i data-feather="align-left" style="width:14px;height:14px;color:var(--gold);"></i> Deskripsi Hero</span>
+                <textarea name="hero_desc" rows="3" placeholder="Deskripsi singkat yang muncul di hero section...">{{.Settings.hero_desc}}</textarea>
+              </label>
+              <label>
+                <span class="field-label"><i data-feather="align-justify" style="width:14px;height:14px;color:var(--text-muted);"></i> Deskripsi Footer</span>
+                <textarea name="footer_desc" rows="3" placeholder="Teks yang muncul di bagian bawah halaman...">{{.Settings.footer_desc}}</textarea>
+              </label>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- KOLOM KANAN -->
+        <div class="settings-col">
+
+          <!-- Section: Tautan & Kontak -->
+          <div class="settings-section">
+            <div class="settings-section-header">
+              <div class="settings-section-icon" style="background:rgba(37,211,102,0.1);color:#25d366;"><i data-feather="link"></i></div>
+              <div>
+                <div class="settings-section-title">Tautan &amp; Kontak</div>
+                <div class="settings-section-desc">URL marketplace dan media sosial.</div>
+              </div>
+            </div>
+            <div class="settings-section-body">
+              <div class="grid2">
+                <label>
+                  <span class="field-label"><i data-feather="shopping-bag" style="width:14px;height:14px;color:var(--gold);"></i> Toko Shopee</span>
+                  <input type="text" name="shopee_url" value="{{.Settings.shopee_url}}" placeholder="https://shopee.co.id/...">
+                </label>
+                <label>
+                  <span class="field-label"><i data-feather="message-circle" style="width:14px;height:14px;color:#25d366;"></i> Tautan WA</span>
+                  <input type="text" name="whatsapp_link" value="{{.Settings.whatsapp_link}}" placeholder="https://wa.me/62...">
+                </label>
+              </div>
+              <div class="grid2">
+                <label>
+                  <span class="field-label"><i data-feather="phone" style="width:14px;height:14px;color:#25d366;"></i> Nomor WA</span>
+                  <input type="text" name="whatsapp_number" value="{{.Settings.whatsapp_number}}" placeholder="0812-3456-7890">
+                </label>
+                <label>
+                  <span class="field-label"><i data-feather="instagram" style="width:14px;height:14px;color:#E4405F;"></i> Instagram</span>
+                  <input type="text" name="instagram_url" value="{{.Settings.instagram_url}}" placeholder="https://instagram.com/...">
+                </label>
+              </div>
+              <div class="grid2">
+                <label>
+                  <span class="field-label"><i data-feather="video" style="width:14px;height:14px;color:#000;"></i> TikTok</span>
+                  <input type="text" name="tiktok_url" value="{{.Settings.tiktok_url}}" placeholder="https://tiktok.com/@...">
+                </label>
+                <label>
+                  <span class="field-label"><i data-feather="shopping-cart" style="width:14px;height:14px;color:#42b549;"></i> Tokopedia</span>
+                  <input type="text" name="tokopedia_url" value="{{.Settings.tokopedia_url}}" placeholder="https://tokopedia.com/...">
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: Info Marketplace -->
+          <div class="settings-section settings-section-grow">
+            <div class="settings-section-header">
+              <div class="settings-section-icon" style="background:rgba(207,160,79,0.1);color:var(--gold);"><i data-feather="award"></i></div>
+              <div>
+                <div class="settings-section-title">Info Marketplace</div>
+                <div class="settings-section-desc">Data statistik untuk badge di halaman publik.</div>
+              </div>
+            </div>
+            <div class="settings-section-body">
+              <label>
+                <span class="field-label"><i data-feather="shield" style="width:14px;height:14px;color:var(--green-dark);"></i> Nomor P-IRT</span>
+                <input type="text" name="pirt" value="{{.Settings.pirt}}" placeholder="5113374011...">
+              </label>
+              <div class="grid2">
+                <label>
+                  <span class="field-label"><i data-feather="star" style="width:14px;height:14px;color:var(--gold);"></i> Rating Shopee</span>
+                  <input type="text" name="rating" value="{{.Settings.rating}}" placeholder="4.9/5">
+                </label>
+                <label>
+                  <span class="field-label"><i data-feather="users" style="width:14px;height:14px;color:var(--green-light);"></i> Pengikut</span>
+                  <input type="text" name="followers" value="{{.Settings.followers}}" placeholder="3,7RB">
+                </label>
+              </div>
+              <div class="info-tip">
+                <div class="info-tip-title"><i data-feather="info" style="width:13px;height:13px;"></i> Catatan</div>
+                Data ini muncul di "trust badge" pada bagian hero halaman utama.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="settings-section" style="margin-top: 24px;">
+        <div class="form-actions-bar">
+          <div class="form-actions-left">
+            <button type="submit" class="btn-gold btn-icon">
+              <i data-feather="save" style="width:16px;height:16px;"></i> Simpan Pengaturan Situs
+            </button>
+          </div>
+          <div class="form-actions-note">
+            <i data-feather="info" style="width:13px;height:13px;vertical-align:middle;"></i> Menyimpan perubahan pada form Identitas, Hero, Tautan, dan Info Marketplace di atas.
+          </div>
+        </div>
+      </div>
+
+    </form>
+
+    <!-- ===== SECTION FOTO PROFIL ===== -->
+    <div class="section-divider">
+      <h3 class="section-divider-title">Foto Profil Admin</h3>
+      <div class="section-divider-line"></div>
+    </div>
+
+    <form method="post" action="/admin/settings/avatar" id="avatarForm">
+      <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+      <input type="hidden" name="admin_photo" id="avaHiddenInput" value="{{.Settings.admin_photo}}">
+
+      <div class="settings-section">
+        
+        <!-- Header Section -->
+        <div class="settings-section-header">
+          <div class="settings-section-icon" style="background:rgba(207,160,79,0.1);color:var(--gold);">
+            <i data-feather="camera"></i>
+          </div>
+          <div>
+            <div class="settings-section-title">Unggah Foto Profil</div>
+            <div class="settings-section-desc">Foto ini akan ditampilkan di sidebar panel dan halaman login admin.</div>
+          </div>
+        </div>
+
+        <div class="settings-section-body">
+          <div style="display: flex; gap: 32px; flex-wrap: wrap;">
+            
+            <!-- Kiri: Uploader -->
+            <div style="flex: 1; min-width: 250px;">
+              <input type="file" id="avaFilePicker" accept="image/jpeg,image/png,image/webp" style="display:none">
+              <div class="img-drop-zone" id="avaDropZone">
+                <div class="img-has-preview" id="avaHasPreview" {{if not .Settings.admin_photo}}style="display:none"{{end}}>
+                  <img id="avaPreviewEl" src="{{if .Settings.admin_photo}}/static/images/{{.Settings.admin_photo}}{{end}}" alt="Preview foto admin">
+                  <div class="img-overlay">
+                    <button type="button" class="img-overlay-btn" onclick="avaPickFile()">
+                      <i data-feather="refresh-cw" style="width:14px;height:14px;"></i> Ganti
+                    </button>
+                    <button type="button" class="img-overlay-btn img-overlay-remove" onclick="avaRemove()">
+                      <i data-feather="trash-2" style="width:14px;height:14px;"></i> Hapus
+                    </button>
+                  </div>
+                </div>
+                <div class="img-empty-state" id="avaEmptyState" {{if .Settings.admin_photo}}style="display:none"{{end}}>
+                  <div class="img-upload-icon"><i data-feather="camera"></i></div>
+                  <p class="img-upload-hint">Drag &amp; drop foto di sini</p>
+                  <button type="button" class="img-browse-btn" onclick="avaPickFile()">
+                    <i data-feather="folder-open" style="width:14px;height:14px;"></i> Pilih File
+                  </button>
+                  <p class="img-format-hint">JPG, PNG, WebP &middot; Maks. 5 MB</p>
+                </div>
+                <div class="img-loading-state" id="avaLoadingState" style="display:none">
+                  <div class="img-spinner"></div>
+                  <p>Mengupload foto...</p>
+                </div>
+              </div>
+              <div class="img-filename-tag" id="avaFilenameTag" {{if not .Settings.admin_photo}}style="display:none"{{end}}>
+                <i data-feather="file-image" style="width:12px;height:12px;"></i>
+                <span id="avaFilenameText">{{.Settings.admin_photo}}</span>
+              </div>
+            </div>
+
+            <!-- Kanan: Preview -->
+            <div style="flex: 1; min-width: 250px; background: var(--bg-input); border-radius: 12px; padding: 24px; border: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center;">
+              <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px;">Live Preview</div>
+              <div class="ava-preview-body" style="padding:0 !important; gap: 40px;">
+                <div class="ava-preview-item">
+                  <div class="ava ava-preview-lg" id="avaCircleLg" data-initial="{{printf "%.1s" .User}}">
+                    {{if .Settings.admin_photo}}<img src="/static/images/{{.Settings.admin_photo}}" alt="Admin">{{else}}{{printf "%.1s" .User}}{{end}}
+                  </div>
+                  <span class="ava-preview-label" style="margin-top: 12px;">Sidebar</span>
+                </div>
+                <div class="ava-preview-item">
+                  <div class="login-avatar ava-preview-sm" id="avaCircleSm" style="background: linear-gradient(135deg, #599464, #174425); border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                    {{if .Settings.admin_photo}}<img src="/static/images/{{.Settings.admin_photo}}" alt="Admin" style="width: 100%; height: 100%; object-fit: cover;">{{else}}<i data-feather="shield" style="width:26px;height:26px;color:#fff;"></i>{{end}}
+                  </div>
+                  <span class="ava-preview-label" style="margin-top: 12px;">Login</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Tombol Aksi -->
+        <div class="form-actions-bar" style="border-top: 1px solid rgba(192, 216, 184, 0.4); margin-top: 8px;">
+          <div class="form-actions-left">
+            <button type="submit" class="btn-gold btn-icon">
+              <i data-feather="save" style="width:16px;height:16px;"></i> Simpan Foto
+            </button>
+            <button type="button" id="avaBtnRemove" class="btn-outline btn-danger btn-icon" onclick="avaRemoveAndSave()" {{if not .Settings.admin_photo}}style="display:none"{{end}}>
+              <i data-feather="trash-2" style="width:16px;height:16px;"></i> Hapus Foto
+            </button>
+          </div>
+          <div class="form-actions-note">
+            <i data-feather="info" style="width:13px;height:13px;vertical-align:middle;"></i> Klik "Simpan Foto" untuk menerapkan perubahan.
+          </div>
+        </div>
+
+      </div>
+    </form>
+
+    <!-- ===== SECTION KEAMANAN ===== -->
+    <div class="section-divider">
+      <h3 class="section-divider-title">Keamanan Akun</h3>
+      <div class="section-divider-line"></div>
+    </div>
+
+    <form method="post" action="/admin/settings/password">
+      <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+      <div class="settings-section">
+        <div class="settings-grid security-grid">
+
+          <!-- Kiri: Deskripsi -->
+          <div class="security-desc-col">
+            <div class="settings-section-icon security-icon"><i data-feather="shield"></i></div>
+            <div class="settings-section-title" style="margin-bottom:10px;">Ubah Kata Sandi Admin</div>
+            <div class="settings-section-desc security-note">
+              Gunakan kombinasi huruf dan angka, minimal 8 karakter. Jangan gunakan kata sandi yang sama dengan akun lain.
+            </div>
+            <ul class="password-rules">
+              <li><i data-feather="check" style="width:13px;height:13px;color:var(--green-light);"></i> Minimal 8 karakter</li>
+              <li><i data-feather="check" style="width:13px;height:13px;color:var(--green-light);"></i> Mengandung huruf &amp; angka</li>
+              <li><i data-feather="check" style="width:13px;height:13px;color:var(--green-light);"></i> Jangan bagikan ke siapapun</li>
+            </ul>
+          </div>
+
+          <!-- Kanan: Form -->
+          <div class="security-form-col">
+            <label>
+              <span class="field-label"><i data-feather="lock" style="width:14px;height:14px;color:var(--danger);"></i> Kata Sandi Lama</span>
+              <input type="password" name="old_password" autocomplete="current-password" required placeholder="••••••••">
+            </label>
+            <label>
+              <span class="field-label"><i data-feather="key" style="width:14px;height:14px;color:var(--green-dark);"></i> Kata Sandi Baru</span>
+              <input type="password" name="new_password" autocomplete="new-password" required minlength="8" placeholder="Minimal 8 karakter, ada huruf &amp; angka">
+            </label>
+            <label>
+              <span class="field-label"><i data-feather="check-square" style="width:14px;height:14px;color:var(--green-dark);"></i> Konfirmasi Kata Sandi Baru</span>
+              <input type="password" name="confirm_password" autocomplete="new-password" required minlength="8" placeholder="Ulangi kata sandi baru">
+            </label>
+            <button type="submit" class="btn-security">
+              <i data-feather="key" style="width:16px;height:16px;"></i> Simpan Kata Sandi Baru
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </form>
+
+{{template "adminfoot" .}}{{end}}

@@ -1,0 +1,21 @@
+{{define "faq"}}
+<section class="faq section-padding" id="faq">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Tanya Jawab Seputar Insuvit</h2>
+      </div>
+      <div class="faq-list fade-in">
+        {{range .FAQs}}
+        <div class="faq-item">
+          <button class="faq-question">{{.Question}}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg></button>
+          <div class="faq-answer">
+            <p>{{.Answer}}</p>
+          </div>
+        </div>
+        {{end}}
+      </div>
+    </div>
+  </section>
+{{end}}

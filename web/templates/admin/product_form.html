@@ -1,0 +1,195 @@
+{{define "product_form"}}{{template "adminhead" .}}
+    <div class="page-head">
+      <div>
+        <h2>{{if .IsNew}}Tambah Varian{{else}}Ubah Varian{{end}}</h2>
+        <div class="muted" style="font-size:.9rem">Varian ini tampil di bagian pilihan paket halaman publik.</div>
+      </div>
+      {{if not .IsNew}}
+      <div class="edit-badge">
+        <i data-feather="edit-3" style="width:13px;height:13px;"></i> Mode Edit &middot; ID #{{.Product.ID}}
+      </div>
+      {{end}}
+    </div>
+
+    <form method="post" action="{{if .IsNew}}/admin/products{{else}}/admin/products/{{.Product.ID}}{{end}}" id="productForm">
+      <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+
+      <div class="settings-grid">
+
+        <!-- KOLOM KIRI: Info Produk -->
+        <div class="settings-col">
+          <div class="settings-section" style="margin-bottom:0;">
+            <div class="settings-section-header">
+              <div class="settings-section-icon"><i data-feather="package"></i></div>
+              <div>
+                <div class="settings-section-title">Info Varian</div>
+                <div class="settings-section-desc">Nama, deskripsi, dan info harga varian paket.</div>
+              </div>
+            </div>
+            <div class="settings-section-body">
+              <label>
+                <span class="field-label">
+                  <i data-feather="tag" style="width:13px;height:13px;color:var(--green-dark);"></i>
+                  Nama Varian <span class="required-star">*</span>
+                </span>
+                <input type="text" name="name" value="{{.Product.Name}}" required placeholder="Insuvit Teh Herbal">
+              </label>
+              <label>
+                <span class="field-label">
+                  <i data-feather="align-left" style="width:13px;height:13px;color:var(--green-dark);"></i>
+                  Deskripsi
+                </span>
+                <textarea name="description" rows="4" placeholder="Deskripsi singkat varian paket...">{{.Product.Description}}</textarea>
+              </label>
+              <div class="grid2">
+                <label>
+                  <span class="field-label">
+                    <i data-feather="dollar-sign" style="width:13px;height:13px;color:var(--gold);"></i>
+                    Harga / Meta Kiri
+                  </span>
+                  <input type="text" name="meta_left" value="{{.Product.MetaLeft}}" placeholder="Mulai Rp13.000*">
+                </label>
+                <label>
+                  <span class="field-label">
+                    <i data-feather="info" style="width:13px;height:13px;color:var(--gold);"></i>
+                    Meta Kanan
+                  </span>
+                  <input type="text" name="meta_right" value="{{.Product.MetaRight}}" placeholder="1 Pouch">
+                </label>
+              </div>
+              <label>
+                <span class="field-label">
+                  <i data-feather="shopping-bag" style="width:13px;height:13px;color:var(--gold);"></i>
+                  URL Shopee
+                </span>
+                <input type="text" name="shopee_url" value="{{.Product.ShopeeURL}}" placeholder="https://shopee.co.id/...">
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- KOLOM KANAN: Gambar & Tampilan -->
+        <div class="settings-col">
+
+          <!-- Gambar Upload -->
+          <div class="settings-section" style="margin-bottom:0;">
+            <div class="settings-section-header">
+              <div class="settings-section-icon" style="background:rgba(207,160,79,0.1);color:var(--gold);">
+                <i data-feather="image"></i>
+              </div>
+              <div>
+                <div class="settings-section-title">Gambar Varian</div>
+                <div class="settings-section-desc">Upload gambar dari perangkat atau drag &amp; drop.</div>
+              </div>
+            </div>
+            <div class="settings-section-body">
+              <input type="hidden" name="image" id="imgHiddenInput" value="{{.Product.Image}}">
+              <input type="file" id="imgFilePicker" accept="image/jpeg,image/png,image/gif,image/webp" style="display:none">
+
+              <div class="img-drop-zone" id="imgDropZone">
+
+                <!-- State: ada gambar -->
+                <div class="img-has-preview" id="imgHasPreview" {{if not .Product.Image}}style="display:none"{{end}}>
+                  <img id="imgPreviewEl" src="{{if .Product.Image}}/static/images/{{.Product.Image}}{{end}}" alt="Preview varian">
+                  <div class="img-overlay">
+                    <button type="button" class="img-overlay-btn" onclick="imgPickFile()">
+                      <i data-feather="refresh-cw" style="width:14px;height:14px;"></i> Ganti
+                    </button>
+                    <button type="button" class="img-overlay-btn img-overlay-remove" onclick="imgRemove()">
+                      <i data-feather="trash-2" style="width:14px;height:14px;"></i> Hapus
+                    </button>
+                  </div>
+                </div>
+
+                <!-- State: kosong -->
+                <div class="img-empty-state" id="imgEmptyState" {{if .Product.Image}}style="display:none"{{end}}>
+                  <div class="img-upload-icon"><i data-feather="upload-cloud"></i></div>
+                  <p class="img-upload-hint">Drag &amp; drop gambar di sini</p>
+                  <button type="button" class="img-browse-btn" onclick="imgPickFile()">
+                    <i data-feather="folder-open" style="width:14px;height:14px;"></i> Pilih File
+                  </button>
+                  <p class="img-format-hint">JPG, PNG, GIF, WebP &middot; Maks. 5 MB</p>
+                </div>
+
+                <!-- State: uploading -->
+                <div class="img-loading-state" id="imgLoadingState" style="display:none">
+                  <div class="img-spinner"></div>
+                  <p>Mengupload gambar...</p>
+                </div>
+              </div>
+
+              <!-- Nama file aktif -->
+              <div class="img-filename-tag" id="imgFilenameTag" {{if not .Product.Image}}style="display:none"{{end}}>
+                <i data-feather="file-image" style="width:12px;height:12px;"></i>
+                <span id="imgFilenameText">{{.Product.Image}}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Label & Visibilitas -->
+          <div class="settings-section" style="margin-bottom:0;flex:1;">
+            <div class="settings-section-header">
+              <div class="settings-section-icon" style="background:rgba(89,148,100,0.1);color:var(--green-light);">
+                <i data-feather="sliders"></i>
+              </div>
+              <div>
+                <div class="settings-section-title">Label &amp; Visibilitas</div>
+                <div class="settings-section-desc">Ribbon, badge, urutan, dan status tampil.</div>
+              </div>
+            </div>
+            <div class="settings-section-body">
+              <div class="grid2">
+                <label>
+                  <span class="field-label">
+                    <i data-feather="award" style="width:13px;height:13px;color:#E4405F;"></i>
+                    Ribbon
+                  </span>
+                  <input type="text" name="ribbon" value="{{.Product.Ribbon}}" placeholder="Terlaris">
+                </label>
+                <label>
+                  <span class="field-label">
+                    <i data-feather="bookmark" style="width:13px;height:13px;color:var(--green-dark);"></i>
+                    Badge
+                  </span>
+                  <input type="text" name="badge" value="{{.Product.Badge}}" placeholder="Tersedia di Shopee">
+                </label>
+              </div>
+              <div class="grid2">
+                <label>
+                  <span class="field-label">
+                    <i data-feather="list" style="width:13px;height:13px;color:var(--text-muted);"></i>
+                    Urutan Tampil
+                  </span>
+                  <input type="number" name="sort_order" value="{{.Product.SortOrder}}">
+                </label>
+                <label class="check-wrap" style="margin-top:28px;">
+                  <input type="checkbox" name="is_active" value="1" {{if .Product.IsActive}}checked{{end}}>
+                  Tampilkan di website
+                </label>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Tombol Aksi -->
+      <div class="settings-section" style="margin-bottom:0;">
+        <div class="form-actions-bar">
+          <div class="form-actions-left">
+            <button type="submit" class="btn-gold btn-icon">
+              <i data-feather="save" style="width:16px;height:16px;"></i>
+              {{if .IsNew}}Tambah Varian{{else}}Simpan Perubahan{{end}}
+            </button>
+            <a href="/admin/products" class="btn-outline btn-icon">
+              <i data-feather="arrow-left" style="width:16px;height:16px;"></i> Kembali
+            </a>
+          </div>
+          <div class="form-actions-note">
+            <i data-feather="alert-circle" style="width:13px;height:13px;vertical-align:middle;"></i>
+            Perubahan langsung tampil di halaman publik.
+          </div>
+        </div>
+      </div>
+    </form>
+{{template "adminfoot" .}}{{end}}

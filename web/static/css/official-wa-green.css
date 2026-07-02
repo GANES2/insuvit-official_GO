@@ -1,0 +1,28 @@
+/* Official WA Green  */
+color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  z-index: 100;
+  transition: var(--transition);
+  animation: pulse-wa 2s infinite;
+}
+
+.floating-wa svg {
+  width: 32px;
+  height: 32px;
+}
+
+.floating-wa:hover {
+  background-color: #20BA5A;
+  transform: translateY(-5px) scale(1.05);
+  animation: none;
+}
+
+@keyframes pulse-wa {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+  70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}

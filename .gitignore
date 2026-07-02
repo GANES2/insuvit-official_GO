@@ -1,0 +1,21 @@
+# Binary hasil build
+/insuvit
+/insuvit.exe
+insuvit_tmp
+insuvit_vtest
+
+# Database SQLite (di-generate otomatis saat run; jangan di-commit)
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Log & file sementara
+*.log
+*.tmp
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

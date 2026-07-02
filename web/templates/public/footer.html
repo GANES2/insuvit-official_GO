@@ -1,0 +1,34 @@
+{{define "footer"}}
+<footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Insuvit Teh Herbal</h3>
+          <p>{{.Settings.footer_desc}}</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigasi</h4>
+          <a href="#beranda">Beranda</a>
+          <a href="#tentang">Tentang Insuvit</a>
+          <a href="#paket">Pilihan Paket</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="footer-col">
+          <h4>Marketplace</h4>
+          <a href="/r/shopee" target="_blank" rel="noopener noreferrer">Shopee (@insuvit_official)</a>
+          <span>Tokopedia (menunggu tautan resmi)</span>
+          <span>TikTok Shop (menunggu tautan resmi)</span>
+        </div>
+        <div class="footer-col">
+          <h4>Kontak</h4>
+          <a href="/r/whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp Admin</a>
+          <a href="{{.Settings.instagram_url}}" target="_blank" rel="noopener noreferrer">Instagram</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Insuvit Teh Herbal. Semua hak cipta dilindungi.</p>
+        <p class="academic-note">Website ini merupakan prototype branding UMKM untuk kebutuhan akademik.</p>
+      </div>
+    </div>
+  </footer>
+{{end}}

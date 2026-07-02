@@ -1,0 +1,53 @@
+/* Advantages */
+.advantages {
+  background-color: var(--cream);
+}
+
+.advantages-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+.advantage-card {
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 32px 20px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.advantage-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--green-main);
+}
+
+.advantage-card .icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 20px;
+  background-color: var(--green-main);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.advantage-card .icon svg {
+  width: 28px;
+  height: 28px;
+  color: var(--white);
+}
+
+.advantage-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 12px;
+}
+
+.advantage-card p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+

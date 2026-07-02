@@ -1,0 +1,85 @@
+{{define "faq_form"}}{{template "adminhead" .}}
+    <div class="page-head">
+      <div>
+        <h2>{{if .IsNew}}Tambah FAQ{{else}}Ubah FAQ{{end}}</h2>
+        <div class="muted" style="font-size:.9rem">Pertanyaan ini tampil di bagian FAQ (accordion) halaman publik.</div>
+      </div>
+      {{if not .IsNew}}
+      <div style="display:flex;align-items:center;gap:8px;background:rgba(207,160,79,0.1);padding:8px 16px;border-radius:20px;font-size:0.8rem;color:var(--gold);font-weight:600;">
+        <i data-feather="edit-3" style="width:14px;height:14px;"></i> Mode Edit · ID #{{.FAQ.ID}}
+      </div>
+      {{end}}
+    </div>
+
+    <form method="post" action="{{if .IsNew}}/admin/faqs{{else}}/admin/faqs/{{.FAQ.ID}}{{end}}">
+      <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+        <!-- Kolom Kiri: Isi FAQ -->
+        <div class="settings-section" style="margin-bottom:0;">
+          <div class="settings-section-header">
+            <div class="settings-section-icon"><i data-feather="help-circle"></i></div>
+            <div>
+              <div class="settings-section-title">Isi FAQ</div>
+              <div class="settings-section-desc">Pertanyaan dan jawaban untuk pengunjung.</div>
+            </div>
+          </div>
+          <div class="settings-section-body">
+            <label>
+              <span style="display:flex;align-items:center;gap:8px;"><i data-feather="help-circle" style="width:14px;height:14px;color:var(--gold);"></i> Pertanyaan</span>
+              <input type="text" name="question" value="{{.FAQ.Question}}" placeholder="Apakah produk ini aman dikonsumsi?" required>
+            </label>
+            <label>
+              <span style="display:flex;align-items:center;gap:8px;"><i data-feather="message-circle" style="width:14px;height:14px;color:var(--green-dark);"></i> Jawaban</span>
+              <textarea name="answer" rows="6" required placeholder="Tulis jawaban lengkap di sini...">{{.FAQ.Answer}}</textarea>
+            </label>
+          </div>
+        </div>
+
+        <!-- Kolom Kanan: Pengaturan -->
+        <div class="settings-section" style="margin-bottom:0;">
+          <div class="settings-section-header">
+            <div class="settings-section-icon" style="background:rgba(207,160,79,0.1);color:var(--gold);"><i data-feather="sliders"></i></div>
+            <div>
+              <div class="settings-section-title">Pengaturan</div>
+              <div class="settings-section-desc">Urutan dan visibilitas FAQ ini.</div>
+            </div>
+          </div>
+          <div class="settings-section-body">
+            <label>
+              <span style="display:flex;align-items:center;gap:8px;"><i data-feather="list" style="width:14px;height:14px;color:var(--text-muted);"></i> Urutan Tampil</span>
+              <input type="number" name="sort_order" value="{{.FAQ.SortOrder}}">
+            </label>
+            <label class="check-wrap">
+              <input type="checkbox" name="is_active" value="1" {{if .FAQ.IsActive}}checked{{end}}> Tampilkan di website
+            </label>
+
+            <!-- Tip Box -->
+            <div style="margin-top:20px; background:rgba(207,160,79,0.08); border:1px solid rgba(207,160,79,0.2); padding:16px; border-radius:12px; font-size:0.8rem; color:var(--text-muted);">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;color:var(--gold);font-weight:600;">
+                <i data-feather="info" style="width:14px;height:14px;"></i> Tips
+              </div>
+              FAQ dengan urutan kecil akan tampil di atas. Nonaktifkan FAQ jika ingin menyembunyikannya sementara tanpa menghapus.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="settings-section" style="margin-bottom:0;">
+        <div style="display:flex; gap:12px; padding:20px 30px; align-items:center; justify-content:space-between;">
+          <div style="display:flex; gap:12px;">
+            <button type="submit" class="btn-gold" style="padding: 14px 36px; font-size: 0.9rem; display:flex; align-items:center; gap:8px;">
+              <i data-feather="save" style="width:16px;height:16px;"></i> {{if .IsNew}}Tambah FAQ{{else}}Simpan Perubahan{{end}}
+            </button>
+            <a href="/admin/faqs" class="btn-outline" style="padding: 14px 36px; font-size: 0.9rem; display:flex; align-items:center; gap:8px;">
+              <i data-feather="arrow-left" style="width:16px;height:16px;"></i> Kembali
+            </a>
+          </div>
+          <div style="font-size:0.8rem;color:var(--text-muted);">
+            <i data-feather="alert-circle" style="width:14px;height:14px;vertical-align:middle;"></i> Semua perubahan akan langsung tampil di halaman publik.
+          </div>
+        </div>
+      </div>
+    </form>
+{{template "adminfoot" .}}{{end}}

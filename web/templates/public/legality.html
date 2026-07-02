@@ -1,0 +1,42 @@
+{{define "legality"}}
+<section class="legality section-padding" id="legalitas">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Legalitas dan Keamanan</h2>
+      </div>
+      <div class="legality-grid fade-in">
+        <div class="legality-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            style="color: var(--green-main);">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          <h3>Legalitas Produk</h3>
+          <p>Informasi P-IRT yang tercantum pada deskripsi produk Shopee adalah {{.Settings.pirt}}. Informasi halal tetap
+            perlu diverifikasi kembali melalui dokumen resmi owner.</p>
+        </div>
+        <div class="legality-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            style="color: var(--green-main);">
+            <path
+              d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+            </path>
+          </svg>
+          <h3>Keamanan Konsumsi</h3>
+          <p>Konsumen disarankan membaca informasi produk, mengikuti petunjuk konsumsi, dan membeli melalui kanal resmi
+            agar terhindar dari produk palsu.</p>
+        </div>
+        <div class="legality-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            style="color: var(--orange-shopee);">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <h3>Catatan Kesehatan</h3>
+          <p>Produk herbal bukan pengganti obat atau konsultasi medis, terutama bagi konsumen dengan kondisi kesehatan
+            tertentu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+{{end}}

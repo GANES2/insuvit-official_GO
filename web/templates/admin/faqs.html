@@ -1,0 +1,61 @@
+{{define "faqs"}}{{template "adminhead" .}}
+    <div class="page-head">
+      <div>
+        <h2>FAQ <span class="count-badge">{{len .FAQs}}</span></h2>
+        <div class="page-head-sub">Pertanyaan yang sering diajukan — tampil sebagai accordion.</div>
+      </div>
+      <a href="/admin/faqs/new" class="btn-gold">
+        <i data-feather="plus" style="width:15px;height:15px;"></i> Tambah FAQ
+      </a>
+    </div>
+
+    <div class="reorder-bar" id="reorder-bar-faqs">
+      <i data-feather="move" style="width:14px;height:14px;"></i>
+      <span class="reorder-bar-text">Geser baris untuk mengubah urutan tampil</span>
+    </div>
+
+    <div class="list-toolbar">
+      <div class="list-search">
+        <span class="list-search-icon"><i data-feather="search"></i></span>
+        <input type="text" class="list-search-input" placeholder="Cari pertanyaan..." data-target="sortable-faqs">
+        <button class="list-search-clear" style="display:none">✕</button>
+      </div>
+      <span class="list-search-count" id="count-faqs"></span>
+    </div>
+
+    <div class="data-list" id="sortable-faqs" data-reorder="/admin/faqs/reorder" data-csrf="{{.CSRFToken}}">
+      {{range .FAQs}}
+      <div class="data-row" data-id="{{.ID}}">
+        <div class="dr-handle" title="Geser untuk mengubah urutan"><svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><circle cx="4" cy="3" r="1.4"/><circle cx="10" cy="3" r="1.4"/><circle cx="4" cy="7" r="1.4"/><circle cx="10" cy="7" r="1.4"/><circle cx="4" cy="11" r="1.4"/><circle cx="10" cy="11" r="1.4"/></svg></div>
+        <div class="dr-num">{{.ID}}</div>
+
+        <div class="dr-body">
+          <div class="dr-name">{{.Question}}</div>
+        </div>
+
+        <div class="dr-status">
+          {{if .IsActive}}<span class="pill on">Aktif</span>{{else}}<span class="pill off">Nonaktif</span>{{end}}
+        </div>
+
+        <div class="dr-actions">
+          <a href="/admin/faqs/{{.ID}}/edit" class="btn-gold">
+            <i data-feather="edit-2" style="width:14px;height:14px;"></i> Ubah
+          </a>
+          <form method="post" action="/admin/faqs/{{.ID}}/delete" id="del-faq-{{.ID}}" style="margin:0;">
+            <input type="hidden" name="csrf_token" value="{{$.CSRFToken}}">
+            <button type="button" class="btn-outline btn-danger" onclick="confirmDelete('del-faq-{{.ID}}', '{{.Question}}')">
+              <i data-feather="trash-2" style="width:14px;height:14px;"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      {{else}}
+      <div class="empty-state">
+        <i data-feather="help-circle" style="width:48px;height:48px;margin-bottom:12px;color:var(--border);"></i>
+        <div style="font-weight:600;margin-bottom:6px;">Belum ada FAQ</div>
+        <div style="font-size:0.85rem;color:var(--text-muted);margin-bottom:16px;">Tambahkan pertanyaan pertama.</div>
+        <a href="/admin/faqs/new" class="btn-gold"><i data-feather="plus" style="width:14px;height:14px;"></i> Tambah FAQ</a>
+      </div>
+      {{end}}
+    </div>
+{{template "adminfoot" .}}{{end}}

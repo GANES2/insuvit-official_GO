@@ -1,0 +1,170 @@
+{{define "index.html"}}
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2f6b4f">
+  <link rel="canonical" href="https://ganes2.github.io/Website-Branding-Design-for-Insuvit-Herbal-Tea-MSME-as-a-Digital-Identity-Media/">
+  <title>{{.Settings.site_title}}</title>
+  <meta name="description" content="{{.Settings.meta_description}}">
+  <meta name="keywords" content="{{.Settings.meta_keywords}}">
+  <meta name="author" content="Ganes Gemi Putra">
+  <meta property="og:title" content="{{.Settings.site_title}}">
+  <meta property="og:description" content="{{.Settings.meta_description}}">
+  <meta property="og:type" content="website">
+
+  <!-- SEO Schema Markup untuk Identitas Bisnis Lokal (Sangat baik untuk jurnal "Digital Identity") -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Insuvit Teh Herbal",
+  "description": "UMKM minuman teh herbal berbahan tumbuhan alami dengan pembelian utama melalui marketplace resmi.",
+  "url": "{{.Settings.shopee_url}}",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+62-812-8534-0838",
+    "contactType": "customer support",
+    "areaServed": "ID"
+  },
+  "sameAs": [
+    "{{.Settings.shopee_url}}",
+    "{{.Settings.instagram_url}}"
+  ]
+}
+</script>
+  <!-- STRATEGI TRACKING & RETARGETING (Berdasarkan Wawancara Owner) -->
+  <!-- Placeholder Meta Pixel / Shopee Pixel / TikTok Pixel.
+  Fitur tracking dapat dikembangkan pada tahap berikutnya.
+  Tidak diaktifkan pada prototype akademik ini.
+  -->
+  <!-- Core/Base -->
+  <link rel="stylesheet" href="/static/css/base.css">
+  <link rel="stylesheet" href="/static/css/buttons.css">
+  <link rel="stylesheet" href="/static/css/animations.css">
+  
+  <!-- Components -->
+  <link rel="stylesheet" href="/static/css/navbar.css">
+  <link rel="stylesheet" href="/static/css/hero.css">
+  <link rel="stylesheet" href="/static/css/trust-strip.css">
+  <link rel="stylesheet" href="/static/css/problems.css">
+  <link rel="stylesheet" href="/static/css/timeline.css">
+  <link rel="stylesheet" href="/static/css/about.css">
+  <link rel="stylesheet" href="/static/css/products.css">
+  <link rel="stylesheet" href="/static/css/advantages.css">
+  <link rel="stylesheet" href="/static/css/testimonials.css">
+  <link rel="stylesheet" href="/static/css/legality.css">
+  <link rel="stylesheet" href="/static/css/faq.css">
+  <link rel="stylesheet" href="/static/css/contact.css">
+  <link rel="stylesheet" href="/static/css/footer.css">
+  
+  <!-- Utilities -->
+  <link rel="stylesheet" href="/static/css/floating-whatsapp.css">
+  <link rel="stylesheet" href="/static/css/back-to-top.css">
+  
+  <!-- MUST be loaded last to override components on mobile -->
+  <link rel="stylesheet" href="/static/css/responsive.css">
+</head>
+
+<body>
+  <a href="#beranda" class="skip-link">Lewati ke konten utama</a>
+  <!--
+  Website branding Insuvit Teh Herbal (Go + SQLite).
+  Konten (produk, testimoni, FAQ, pengaturan) dikelola lewat panel admin
+  di /admin dan disimpan dalam database SQLite, lalu dirender server-side.
+  Pembelian tetap diarahkan ke marketplace resmi seperti Shopee.
+  -->
+
+  {{template "navbar" .}}
+  <div class="mobile-overlay" id="mobile-overlay"></div>
+
+  {{template "hero" .}}
+
+  <!-- Trust Badges Strip -->
+  <div class="trust-strip">
+    <div class="container">
+      <div class="trust-items fade-in">
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+              d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+            </path>
+          </svg>
+          <span>Rating Shopee {{.Settings.rating}}</span>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2v20"></path>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+          <span>{{.Settings.followers}} Pengikut</span>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+          <span>P-IRT {{.Settings.pirt}}</span>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+          <span>WA {{.Settings.whatsapp_number}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{template "problems" .}}
+
+  {{template "purpose" .}}
+
+  {{template "about" .}}
+
+  {{template "timeline" .}}
+
+  {{template "values" .}}
+
+  {{template "products" .}}
+
+  {{template "testimonials" .}}
+
+  {{template "legality" .}}
+
+  {{template "faq" .}}
+
+  {{template "contact" .}}
+
+  {{template "footer" .}}
+
+  <!-- Floating WhatsApp Button -->
+  <a href="/r/whatsapp" target="_blank" rel="noopener noreferrer" class="floating-wa" aria-label="Chat WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  </a>
+
+  <button class="back-to-top" id="back-to-top-btn" aria-label="Kembali ke atas">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <script defer src="/static/js/5-hero-parallax-effect.js"></script>
+  <script defer src="/static/js/back-to-top-button.js"></script>
+  <script defer src="/static/js/faq-accordion.js"></script>
+  <script defer src="/static/js/mobile-menu-toggle.js"></script>
+  <script defer src="/static/js/scroll-reveal-animation-using-intersection-observer.js"></script>
+  <script defer src="/static/js/scroll-spy.js?v=2"></script>
+  <script defer src="/static/js/smart-navbar-scroll-effect.js?v=2"></script>
+  <script defer src="/static/js/smooth-scrolling-for-anchor-links.js?v=2"></script>
+</body>
+
+</html>
+
+{{end}}

@@ -1,0 +1,34 @@
+/* Trust Strip */
+.trust-strip {
+  background-color: var(--green-dark);
+  padding: 32px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.trust-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--green-light);
+}
+
+.trust-item svg {
+  width: 24px;
+  height: 24px;
+  color: var(--brown-soft);
+}
+
+.trust-item span {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+

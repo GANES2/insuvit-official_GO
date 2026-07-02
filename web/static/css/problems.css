@@ -1,0 +1,127 @@
+/* Problems */
+.problems {
+  background-color: var(--white);
+  position: relative;
+  z-index: 2;
+}
+
+.problems-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.problem-card {
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 32px 24px;
+  transition: var(--transition);
+}
+
+.problem-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(47, 107, 79, 0.3);
+}
+
+.problem-card .icon {
+  width: 56px;
+  height: 56px;
+  background-color: var(--green-light);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: var(--transition);
+}
+
+.problem-card:hover .icon {
+  background-color: var(--green-main);
+}
+
+.problem-card .icon svg {
+  width: 28px;
+  height: 28px;
+  color: var(--green-main);
+  transition: var(--transition);
+}
+
+.problem-card:hover .icon svg {
+  color: var(--white);
+}
+
+.problem-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 12px;
+}
+
+.problem-card p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.solution-box {
+  background-color: var(--green-light);
+  border: 1px solid rgba(47, 107, 79, 0.1);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.solution-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 4px; height: 100%;
+  background-color: var(--green-main);
+}
+
+.solution-box h3 {
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+  color: var(--green-dark);
+}
+
+.solution-box p {
+  font-size: 1.05rem;
+  color: var(--text-main);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.purpose-points {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 28px;
+  text-align: left;
+}
+
+.purpose-points div {
+  background-color: var(--white);
+  border: 1px solid rgba(47, 107, 79, 0.12);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.purpose-points strong,
+.purpose-points span {
+  display: block;
+}
+
+.purpose-points strong {
+  color: var(--green-dark);
+  margin-bottom: 8px;
+}
+
+.purpose-points span {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+

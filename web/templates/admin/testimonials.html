@@ -1,0 +1,64 @@
+{{define "testimonials"}}{{template "adminhead" .}}
+    <div class="page-head">
+      <div>
+        <h2>Testimoni <span class="count-badge">{{len .Testimonials}}</span></h2>
+        <div class="page-head-sub">Ulasan pelanggan yang tampil di halaman publik.</div>
+      </div>
+      <a href="/admin/testimonials/new" class="btn-gold">
+        <i data-feather="plus" style="width:15px;height:15px;"></i> Tambah Testimoni
+      </a>
+    </div>
+
+    <div class="reorder-bar" id="reorder-bar-testimonials">
+      <i data-feather="move" style="width:14px;height:14px;"></i>
+      <span class="reorder-bar-text">Geser baris untuk mengubah urutan tampil</span>
+    </div>
+
+    <div class="list-toolbar">
+      <div class="list-search">
+        <span class="list-search-icon"><i data-feather="search"></i></span>
+        <input type="text" class="list-search-input" placeholder="Cari nama atau kutipan..." data-target="sortable-testimonials">
+        <button class="list-search-clear" style="display:none">✕</button>
+      </div>
+      <span class="list-search-count" id="count-testimonials"></span>
+    </div>
+
+    <div class="data-list" id="sortable-testimonials" data-reorder="/admin/testimonials/reorder" data-csrf="{{.CSRFToken}}">
+      {{range .Testimonials}}
+      <div class="data-row" data-id="{{.ID}}">
+        <div class="dr-handle" title="Geser untuk mengubah urutan"><svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><circle cx="4" cy="3" r="1.4"/><circle cx="10" cy="3" r="1.4"/><circle cx="4" cy="7" r="1.4"/><circle cx="10" cy="7" r="1.4"/><circle cx="4" cy="11" r="1.4"/><circle cx="10" cy="11" r="1.4"/></svg></div>
+        <div class="dr-avatar">{{printf "%.1s" .Author}}</div>
+
+        <div class="dr-body">
+          <div class="dr-name">{{.Author}}</div>
+          <div class="dr-sub">{{if .Role}}{{.Role}}{{else}}<em>Tidak ada jabatan</em>{{end}}</div>
+        </div>
+
+        <div class="dr-quote">&ldquo;{{.Quote}}&rdquo;</div>
+
+        <div class="dr-status">
+          {{if .IsPublished}}<span class="pill on">Tampil</span>{{else}}<span class="pill off">Sembunyi</span>{{end}}
+        </div>
+
+        <div class="dr-actions">
+          <a href="/admin/testimonials/{{.ID}}/edit" class="btn-gold">
+            <i data-feather="edit-2" style="width:14px;height:14px;"></i> Ubah
+          </a>
+          <form method="post" action="/admin/testimonials/{{.ID}}/delete" id="del-testi-{{.ID}}" style="margin:0;">
+            <input type="hidden" name="csrf_token" value="{{$.CSRFToken}}">
+            <button type="button" class="btn-outline btn-danger" onclick="confirmDelete('del-testi-{{.ID}}', 'testimoni dari {{.Author}}')">
+              <i data-feather="trash-2" style="width:14px;height:14px;"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      {{else}}
+      <div class="empty-state">
+        <i data-feather="message-square" style="width:48px;height:48px;margin-bottom:12px;color:var(--border);"></i>
+        <div style="font-weight:600;margin-bottom:6px;">Belum ada testimoni</div>
+        <div style="font-size:0.85rem;color:var(--text-muted);margin-bottom:16px;">Tambahkan ulasan pelanggan pertama.</div>
+        <a href="/admin/testimonials/new" class="btn-gold"><i data-feather="plus" style="width:14px;height:14px;"></i> Tambah Testimoni</a>
+      </div>
+      {{end}}
+    </div>
+{{template "adminfoot" .}}{{end}}

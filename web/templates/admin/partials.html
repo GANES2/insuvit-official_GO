@@ -1,0 +1,116 @@
+{{define "adminhead"}}<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>{{.Title}} · Admin Insuvit</title>
+  <link rel="stylesheet" href="/static/css/admin-dashboard.css?v=34">
+  <meta name="htmx-config" content='{"globalViewTransitions":true}'>
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+</head>
+
+<body>
+  {{if .User}}
+  <div class="shell">
+
+    <div class="sb-overlay" id="sbOverlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sb-user-top">
+        <div class="ava">{{if .Settings.admin_photo}}<img src="/static/images/{{.Settings.admin_photo}}" alt="{{.User}}">{{else}}{{printf "%.1s" .User}}{{end}}</div>
+        <div class="name">{{.User}}</div>
+        <div class="email">Administrator</div>
+      </div>
+      
+      <nav class="nav">
+        <a href="/admin" class="{{if eq .Section "dashboard"}}active{{end}}">
+          <span class="ic"><i data-feather="grid"></i></span>Dashboard
+        </a>
+        <a href="/admin/products" class="{{if eq .Section "products"}}active{{end}}">
+          <span class="ic"><i data-feather="box"></i></span>Varian Paket
+        </a>
+        <a href="/admin/testimonials" class="{{if eq .Section "testimonials"}}active{{end}}">
+          <span class="ic"><i data-feather="message-square"></i></span>Testimoni
+        </a>
+        <a href="/admin/faqs" class="{{if eq .Section "faqs"}}active{{end}}">
+          <span class="ic"><i data-feather="help-circle"></i></span>FAQ
+        </a>
+        <a href="/admin/settings" class="{{if eq .Section "settings"}}active{{end}}">
+          <span class="ic"><i data-feather="settings"></i></span>Pengaturan
+        </a>
+      </nav>
+      
+      <div class="sb-bottom">
+        <div class="sb-title">Status Sistem</div>
+
+        <div class="sb-status-card">
+          <div class="sb-status-dot"></div>
+          <div class="sb-status-info">
+            <span class="sb-status-label">Online</span>
+            <span class="sb-status-ver">By_Ganes</span>
+          </div>
+          <i data-feather="activity" class="sb-status-icon"></i>
+        </div>
+
+        <form method="post" action="/admin/logout" style="margin:0;" id="logoutForm">
+          <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+          <button type="button" class="sb-logout-btn" onclick="confirmLogout('logoutForm')">
+            <i data-feather="log-out" style="width:15px;height:15px;"></i>
+            <span>Keluar</span>
+          </button>
+        </form>
+      </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="main">
+      
+      <!-- Topbar / Pill Filters -->
+      <header class="topbar" style="justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <button class="sb-hamburger" id="sbToggle" aria-label="Buka menu">
+            <i data-feather="menu"></i>
+          </button>
+          <div class="tb-item tb-area-admin"><i data-feather="shield"></i> Area Admin</div>
+          <div class="tb-div tb-area-admin"></div>
+          <div class="tb-item" style="min-width: 140px;">
+            <i data-feather="{{if eq .Section "dashboard"}}grid{{else if eq .Section "products"}}box{{else if eq .Section "testimonials"}}message-square{{else if eq .Section "faqs"}}help-circle{{else if eq .Section "settings"}}settings{{else}}calendar{{end}}"></i>
+            {{.Title}}
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div class="tb-item tb-clock" x-data="{ time: new Date().toLocaleTimeString('id-ID', {timeZone: 'Asia/Jakarta'}) }" x-init="setInterval(() => { time = new Date().toLocaleTimeString('id-ID', {timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit', second: '2-digit'}) }, 1000)">
+            <i data-feather="clock"></i> <span x-text="time + ' WIB'"></span>
+          </div>
+          <a href="/" target="_blank" class="tb-btn" style="margin-left: 0;">Lihat Halaman Publik</a>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <main class="content" id="content">
+  {{else}}
+  <!-- Guest / Login Layout -->
+  {{end}}
+{{end}}
+
+{{define "adminfoot"}}
+  {{if .User}}
+      </main>
+    </div>
+  </div>
+  {{end}}
+  <script>
+    feather.replace();
+  </script>
+  <script src="/static/js/admin.js?v=30"></script>
+</body>
+</html>
+{{end}}

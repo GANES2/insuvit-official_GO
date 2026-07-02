@@ -1,0 +1,46 @@
+{{define "hero"}}
+<section class="hero section-padding" id="beranda">
+    <div class="container">
+      <div class="hero-content fade-in">
+        <div class="hero-badges">
+          <span class="hero-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg> Sejak 2022 Online</span>
+          <span class="hero-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v20"></path>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg> Shopee Kanal Utama</span>
+          <span class="hero-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+              </path>
+            </svg> Praktis Diseduh</span>
+          <span class="hero-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg> P-IRT Tertera</span>
+        </div>
+        <h1>{{.Settings.hero_title}}</h1>
+        <p class="hero-subtitle">{{.Settings.hero_subtitle}}</p>
+        <p class="hero-desc">{{.Settings.hero_desc}}</p>
+        <div class="hero-buttons">
+          <a href="/r/shopee" target="_blank" rel="noopener noreferrer" class="btn btn-shopee">Beli di Shopee</a>
+          <a href="#paket" class="btn btn-outline">Lihat Paket</a>
+          <a href="#tentang" class="btn btn-outline">Kenali Insuvit</a>
+        </div>
+      </div>
+      <div class="hero-image fade-in">
+        <img src="/static/images/hero-tea.png" alt="Produk Insuvit Teh Herbal kemasan sachet" fetchpriority="high" decoding="async" width="600" height="600">
+      </div>
+    </div>
+    <div class="hero-wave">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path
+          d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+          class="shape-fill"></path>
+      </svg>
+    </div>
+  </section>
+{{end}}

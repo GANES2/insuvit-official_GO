@@ -1,0 +1,63 @@
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 1rem;
+  transition: var(--transition);
+  cursor: pointer;
+  border: 1px solid transparent;
+  font-family: var(--font-body);
+}
+
+.btn svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.btn:hover svg {
+  transform: translateX(3px);
+}
+
+.btn-primary {
+  background-color: var(--green-main);
+  color: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  background-color: var(--green-dark);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--green-main);
+  border-color: var(--border-color);
+}
+
+.btn-outline:hover {
+  background-color: var(--green-light);
+  border-color: var(--green-main);
+  transform: translateY(-2px);
+}
+
+.btn-shopee {
+  background-color: var(--orange-shopee);
+  color: var(--white);
+  border-color: var(--orange-shopee);
+  box-shadow: 0 4px 15px rgba(232, 111, 46, 0.3);
+}
+
+.btn-shopee:hover {
+  background-color: #d65d21;
+  box-shadow: 0 6px 20px rgba(232, 111, 46, 0.4);
+  transform: translateY(-2px);
+}
+

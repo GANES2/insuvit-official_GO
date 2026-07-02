@@ -1,0 +1,105 @@
+/* Testimonials */
+.testimonials {
+  background-color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonials::after {
+  content: '';
+  position: absolute;
+  bottom: -40px;
+  right: -40px;
+  width: 250px;
+  height: 250px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232f6b4f' stroke-width='0.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22c4-4 8-8 8-14a6 6 0 0 0-12 0c0 6 4 10 8 14z'/%3E%3Cpath d='M12 22V8'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.15;
+  z-index: 0;
+  transform: rotate(-30deg);
+}
+
+.testimonials .container {
+  position: relative;
+  z-index: 1;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.testimonial-card {
+  background-color: var(--green-light);
+  border: 1px solid rgba(47, 107, 79, 0.1);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  transition: var(--transition);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.testimonial-card blockquote {
+  font-size: 1.05rem;
+  color: var(--green-dark);
+  margin-bottom: 24px;
+  font-style: italic;
+  position: relative;
+}
+
+.testimonial-card blockquote::before {
+  content: '"';
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  color: rgba(47, 107, 79, 0.1);
+  position: absolute;
+  top: -20px;
+  left: -10px;
+  line-height: 1;
+}
+
+.testimonial-card .reviewer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.testimonial-card .avatar {
+  width: 48px;
+  height: 48px;
+  background-color: var(--green-main);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  font-family: var(--font-heading);
+}
+
+.testimonial-card .reviewer-info .name {
+  display: block;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-main);
+}
+
+.testimonial-card .reviewer-info .role {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.testimonial-note {
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+

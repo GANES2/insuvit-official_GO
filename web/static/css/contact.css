@@ -1,0 +1,68 @@
+/* Contact */
+.contact {
+  background-color: var(--cream);
+  background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' fill='%232f6b4f' fill-opacity='0.04'/%3E%3C/g%3E%3C/svg%3E");
+  text-align: center;
+}
+
+.contact-desc {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.contact-note {
+  max-width: 680px;
+  margin: 28px auto 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 1rem;
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  transition: var(--transition);
+  font-family: var(--font-body);
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.contact-btn:hover {
+  background-color: var(--green-light);
+  border-color: var(--green-main);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.contact-btn.shopee-btn {
+  background-color: var(--orange-shopee);
+  color: var(--white);
+  border-color: var(--orange-shopee);
+}
+
+.contact-btn.shopee-btn:hover {
+  background-color: #d65d21;
+}
+

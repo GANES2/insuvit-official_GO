@@ -1,0 +1,144 @@
+{{define "dashboard"}}{{template "adminhead" .}}
+
+    <div class="page-head">
+      <div>
+        <h2>Beranda</h2>
+        <div class="page-head-sub">Selamat datang kembali — ringkasan data manajemen Insuvit.</div>
+      </div>
+    </div>
+
+    <!-- STAT CARDS -->
+    <div class="stat-row">
+      <div class="stat-card" style="--stat-accent:var(--gold);--stat-icon-bg:rgba(207,160,79,0.1);--stat-icon-color:var(--gold);">
+        <div class="stat-card-body">
+          <div class="stat-val">{{len .Products}}</div>
+          <div class="stat-lbl">Varian Aktif</div>
+        </div>
+        <div class="stat-card-icon"><i data-feather="box"></i></div>
+      </div>
+      <div class="stat-card" style="--stat-accent:var(--green-light);--stat-icon-bg:rgba(89,148,100,0.1);--stat-icon-color:var(--green-light);">
+        <div class="stat-card-body">
+          <div class="stat-val">{{len .Testimonials}}</div>
+          <div class="stat-lbl">Testimoni</div>
+        </div>
+        <div class="stat-card-icon"><i data-feather="message-square"></i></div>
+      </div>
+      <div class="stat-card" style="--stat-accent:#6366f1;--stat-icon-bg:rgba(99,102,241,0.1);--stat-icon-color:#6366f1;">
+        <div class="stat-card-body">
+          <div class="stat-val">{{len .FAQs}}</div>
+          <div class="stat-lbl">FAQ</div>
+        </div>
+        <div class="stat-card-icon"><i data-feather="help-circle"></i></div>
+      </div>
+      <div class="stat-card" style="--stat-accent:#f59e0b;--stat-icon-bg:rgba(245,158,11,0.1);--stat-icon-color:#f59e0b;">
+        <div class="stat-card-body">
+          <div class="stat-val">{{.Settings.rating}}</div>
+          <div class="stat-lbl">Rating Toko</div>
+        </div>
+        <div class="stat-card-icon"><i data-feather="star"></i></div>
+      </div>
+    </div>
+
+    <!-- BOTTOM GRID -->
+    <div class="dash-bottom">
+
+      <!-- Quick Actions -->
+      <div class="quick-actions">
+        <div class="qa-header">
+          <div class="qa-header-icon"><i data-feather="zap" style="width:18px;height:18px;"></i></div>
+          <div class="qa-header-title">Aksi Cepat</div>
+        </div>
+        <div class="qa-list">
+          <a href="/admin/products/new" class="qa-item">
+            <div class="qa-icon"><i data-feather="plus" style="width:16px;height:16px;"></i></div>
+            Tambah Varian Shopee
+            <span class="qa-chevron"><i data-feather="chevron-right" style="width:15px;height:15px;"></i></span>
+          </a>
+          <a href="/admin/testimonials/new" class="qa-item">
+            <div class="qa-icon"><i data-feather="plus" style="width:16px;height:16px;"></i></div>
+            Tambah Testimoni
+            <span class="qa-chevron"><i data-feather="chevron-right" style="width:15px;height:15px;"></i></span>
+          </a>
+          <a href="/admin/faqs/new" class="qa-item">
+            <div class="qa-icon"><i data-feather="plus" style="width:16px;height:16px;"></i></div>
+            Tambah FAQ
+            <span class="qa-chevron"><i data-feather="chevron-right" style="width:15px;height:15px;"></i></span>
+          </a>
+          <div class="qa-sep"></div>
+          <a href="/admin/products" class="qa-item">
+            <div class="qa-icon"><i data-feather="box" style="width:16px;height:16px;"></i></div>
+            Kelola Varian Paket
+            <span class="qa-chevron"><i data-feather="chevron-right" style="width:15px;height:15px;"></i></span>
+          </a>
+          <a href="/admin/testimonials" class="qa-item">
+            <div class="qa-icon"><i data-feather="message-square" style="width:16px;height:16px;"></i></div>
+            Kelola Testimoni
+            <span class="qa-chevron"><i data-feather="chevron-right" style="width:15px;height:15px;"></i></span>
+          </a>
+          <a href="/admin/faqs" class="qa-item">
+            <div class="qa-icon"><i data-feather="help-circle" style="width:16px;height:16px;"></i></div>
+            Kelola FAQ
+            <span class="qa-chevron"><i data-feather="chevron-right" style="width:15px;height:15px;"></i></span>
+          </a>
+          <div class="qa-sep"></div>
+          <a href="/admin/settings" class="qa-item">
+            <div class="qa-icon" style="background:rgba(207,160,79,0.1);color:var(--gold);"><i data-feather="settings" style="width:16px;height:16px;"></i></div>
+            Pengaturan Situs
+            <span class="qa-chevron"><i data-feather="chevron-right" style="width:15px;height:15px;"></i></span>
+          </a>
+          <a href="/" target="_blank" class="qa-item">
+            <div class="qa-icon" style="background:rgba(89,148,100,0.1);color:var(--green-light);"><i data-feather="external-link" style="width:16px;height:16px;"></i></div>
+            Lihat Halaman Publik
+            <span class="qa-chevron"><i data-feather="chevron-right" style="width:15px;height:15px;"></i></span>
+          </a>
+        </div>
+        <div class="dash-info-panel" style="margin:0 12px 12px;">
+          <i data-feather="info" style="width:16px;height:16px;color:var(--gold);flex-shrink:0;margin-top:2px;"></i>
+          <div>
+            <strong>Data Real-Time</strong><br>
+            Metrik diambil langsung dari database SQLite. Perubahan tampil instan di halaman publik.
+          </div>
+        </div>
+      </div>
+
+      <!-- Analytics Widget -->
+      <div class="widget-dark">
+        <div class="wd-top">
+          <div class="wd-city">Trafik <strong>Situs</strong></div>
+          <div><i data-feather="bar-chart-2" style="width:24px;height:24px;color:var(--gold);"></i></div>
+        </div>
+        <div class="wd-map">
+          <svg viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="3" fill="#cfa04f"/>
+            <circle cx="150" cy="40" r="3" fill="#cfa04f"/>
+            <path d="M50 50 Q 100 0 150 40" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-dasharray="4 4" fill="none"/>
+            <circle cx="30" cy="60" r="1.5" fill="#fff" opacity="0.25"/>
+            <circle cx="40" cy="70" r="1.5" fill="#fff" opacity="0.25"/>
+            <circle cx="60" cy="40" r="1.5" fill="#fff" opacity="0.25"/>
+            <circle cx="70" cy="80" r="1.5" fill="#fff" opacity="0.25"/>
+            <circle cx="90" cy="30" r="1.5" fill="#fff" opacity="0.25"/>
+            <circle cx="110" cy="65" r="1.5" fill="#fff" opacity="0.25"/>
+            <circle cx="120" cy="30" r="1.5" fill="#fff" opacity="0.25"/>
+            <circle cx="160" cy="60" r="1.5" fill="#fff" opacity="0.25"/>
+            <circle cx="140" cy="70" r="1.5" fill="#fff" opacity="0.25"/>
+            <circle cx="170" cy="50" r="1.5" fill="#fff" opacity="0.25"/>
+          </svg>
+        </div>
+        <div class="wd-stats">
+          <div class="wd-stat">
+            <div class="wd-stat-val">{{.Analytics.page_views}}</div>
+            <div class="wd-stat-lbl">Kunjungan</div>
+          </div>
+          <div class="wd-stat">
+            <div class="wd-stat-val">{{.Analytics.shopee_clicks}}</div>
+            <div class="wd-stat-lbl">Klik Shopee</div>
+          </div>
+          <div class="wd-stat">
+            <div class="wd-stat-val">{{.Analytics.wa_clicks}}</div>
+            <div class="wd-stat-lbl">Klik WA</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+{{template "adminfoot" .}}{{end}}

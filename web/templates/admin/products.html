@@ -1,0 +1,78 @@
+{{define "products"}}{{template "adminhead" .}}
+    <div class="page-head">
+      <div>
+        <h2>Varian Paket <span class="count-badge">{{len .Products}}</span></h2>
+        <div class="page-head-sub">Varian paket Insuvit yang tampil di halaman publik.</div>
+      </div>
+      <a href="/admin/products/new" class="btn-gold">
+        <i data-feather="plus" style="width:15px;height:15px;"></i> Tambah Varian
+      </a>
+    </div>
+
+    <div class="reorder-bar" id="reorder-bar-products">
+      <i data-feather="move" style="width:14px;height:14px;"></i>
+      <span class="reorder-bar-text">Geser baris untuk mengubah urutan tampil</span>
+    </div>
+
+    <div class="list-toolbar">
+      <div class="list-search">
+        <span class="list-search-icon"><i data-feather="search"></i></span>
+        <input type="text" class="list-search-input" placeholder="Cari varian..." data-target="sortable-products">
+        <button class="list-search-clear" style="display:none">✕</button>
+      </div>
+      <span class="list-search-count" id="count-products"></span>
+    </div>
+
+    <div class="data-list" id="sortable-products" data-reorder="/admin/products/reorder" data-csrf="{{.CSRFToken}}">
+      {{range .Products}}
+      <div class="data-row" data-id="{{.ID}}">
+        <div class="dr-handle" title="Geser untuk mengubah urutan"><svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><circle cx="4" cy="3" r="1.4"/><circle cx="10" cy="3" r="1.4"/><circle cx="4" cy="7" r="1.4"/><circle cx="10" cy="7" r="1.4"/><circle cx="4" cy="11" r="1.4"/><circle cx="10" cy="11" r="1.4"/></svg></div>
+        {{if .Image}}
+        <div class="dr-thumb">
+          <img src="/static/images/{{.Image}}" alt="{{.Name}}">
+        </div>
+        {{else}}
+        <div class="dr-thumb-placeholder">
+          <i data-feather="image" style="width:22px;height:22px;"></i>
+        </div>
+        {{end}}
+
+        <div class="dr-body">
+          <div class="dr-name">
+            {{.Name}}
+            {{if .Ribbon}}<span class="pill on" style="font-size:0.65rem;">{{.Ribbon}}</span>{{end}}
+          </div>
+          <div class="dr-sub">{{if .Description}}{{.Description}}{{else}}<em>Tidak ada deskripsi</em>{{end}}</div>
+        </div>
+
+        <div class="dr-meta">
+          <div class="dr-meta-label">Harga</div>
+          <div class="dr-meta-val">{{if .MetaLeft}}{{.MetaLeft}}{{else}}—{{end}}</div>
+        </div>
+
+        <div class="dr-status">
+          {{if .IsActive}}<span class="pill on">Aktif</span>{{else}}<span class="pill off">Nonaktif</span>{{end}}
+        </div>
+
+        <div class="dr-actions">
+          <a href="/admin/products/{{.ID}}/edit" class="btn-gold">
+            <i data-feather="edit-2" style="width:14px;height:14px;"></i> Ubah
+          </a>
+          <form method="post" action="/admin/products/{{.ID}}/delete" id="del-product-{{.ID}}" style="margin:0;">
+            <input type="hidden" name="csrf_token" value="{{$.CSRFToken}}">
+            <button type="button" class="btn-outline btn-danger" onclick="confirmDelete('del-product-{{.ID}}', '{{.Name}}')">
+              <i data-feather="trash-2" style="width:14px;height:14px;"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      {{else}}
+      <div class="empty-state">
+        <i data-feather="box" style="width:48px;height:48px;margin-bottom:12px;color:var(--border);"></i>
+        <div style="font-weight:600;margin-bottom:6px;">Belum ada varian paket</div>
+        <div style="font-size:0.85rem;color:var(--text-muted);margin-bottom:16px;">Tambahkan varian paket pertama Anda sekarang.</div>
+        <a href="/admin/products/new" class="btn-gold"><i data-feather="plus" style="width:14px;height:14px;"></i> Tambah Varian</a>
+      </div>
+      {{end}}
+    </div>
+{{template "adminfoot" .}}{{end}}

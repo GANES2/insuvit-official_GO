@@ -1,0 +1,79 @@
+/* Timeline */
+.timeline {
+  background-color: var(--white);
+}
+
+.timeline-container {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 24px;
+  height: 100%;
+  width: 2px;
+  background-color: var(--green-light);
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 60px;
+  margin-bottom: 30px;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 17px;
+  top: 5px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background-color: var(--green-main);
+  border: 3px solid var(--white);
+  box-shadow: 0 0 0 2px var(--green-light);
+}
+
+.timeline-content h3 {
+  font-size: 1.2rem;
+  color: var(--green-dark);
+  margin-bottom: 8px;
+}
+
+.timeline-content p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+  .timeline-container::before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .timeline-item {
+    width: 50%;
+    padding-left: 0;
+    padding-right: 40px;
+    text-align: right;
+  }
+  .timeline-item:nth-child(even) {
+    margin-left: auto;
+    padding-right: 0;
+    padding-left: 40px;
+    text-align: left;
+  }
+  .timeline-dot {
+    left: auto;
+    right: -8px;
+  }
+  .timeline-item:nth-child(even) .timeline-dot {
+    left: -8px;
+    right: auto;
+  }
+}
+

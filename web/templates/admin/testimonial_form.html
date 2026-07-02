@@ -1,0 +1,83 @@
+{{define "testimonial_form"}}{{template "adminhead" .}}
+    <div class="page-head">
+      <div>
+        <h2>{{if .IsNew}}Tambah Testimoni{{else}}Ubah Testimoni{{end}}</h2>
+        <div class="muted" style="font-size:.9rem">Testimoni ini tampil di bagian ulasan pelanggan pada halaman publik.</div>
+      </div>
+      {{if not .IsNew}}
+      <div style="display:flex;align-items:center;gap:8px;background:rgba(207,160,79,0.1);padding:8px 16px;border-radius:20px;font-size:0.8rem;color:var(--gold);font-weight:600;">
+        <i data-feather="edit-3" style="width:14px;height:14px;"></i> Mode Edit · ID #{{.Testimonial.ID}}
+      </div>
+      {{end}}
+    </div>
+
+    <form method="post" action="{{if .IsNew}}/admin/testimonials{{else}}/admin/testimonials/{{.Testimonial.ID}}{{end}}">
+      <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+      
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+        <!-- Kolom Kiri: Isi Testimoni -->
+        <div class="settings-section" style="margin-bottom:0;">
+          <div class="settings-section-header">
+            <div class="settings-section-icon" style="background:rgba(37,211,102,0.1);color:#25d366;"><i data-feather="message-square"></i></div>
+            <div>
+              <div class="settings-section-title">Isi Testimoni</div>
+              <div class="settings-section-desc">Kutipan ulasan asli dari pelanggan.</div>
+            </div>
+          </div>
+          <div class="settings-section-body">
+            <label>
+              <span style="display:flex;align-items:center;gap:8px;"><i data-feather="message-circle" style="width:14px;height:14px;color:#25d366;"></i> Kutipan Testimoni</span>
+              <textarea name="quote" rows="8" required placeholder="Tulis kutipan ulasan pelanggan di sini...">{{.Testimonial.Quote}}</textarea>
+            </label>
+          </div>
+        </div>
+
+        <!-- Kolom Kanan: Info Penulis -->
+        <div class="settings-section" style="margin-bottom:0;">
+          <div class="settings-section-header">
+            <div class="settings-section-icon" style="background:rgba(207,160,79,0.1);color:var(--gold);"><i data-feather="user"></i></div>
+            <div>
+              <div class="settings-section-title">Info Penulis</div>
+              <div class="settings-section-desc">Identitas dan pengaturan tampilan.</div>
+            </div>
+          </div>
+          <div class="settings-section-body">
+            <label>
+              <span style="display:flex;align-items:center;gap:8px;"><i data-feather="user" style="width:14px;height:14px;color:var(--green-dark);"></i> Nama Penulis</span>
+              <input type="text" name="author" value="{{.Testimonial.Author}}" placeholder="Ibu Sari" required>
+            </label>
+            <label>
+              <span style="display:flex;align-items:center;gap:8px;"><i data-feather="map-pin" style="width:14px;height:14px;color:var(--gold);"></i> Keterangan (Kota / Peran)</span>
+              <input type="text" name="role" value="{{.Testimonial.Role}}" placeholder="Pelanggan, Purwokerto">
+            </label>
+            <div class="grid2">
+              <label>
+                <span style="display:flex;align-items:center;gap:8px;"><i data-feather="list" style="width:14px;height:14px;color:var(--text-muted);"></i> Urutan Tampil</span>
+                <input type="number" name="sort_order" value="{{.Testimonial.SortOrder}}">
+              </label>
+              <label class="check-wrap">
+                <input type="checkbox" name="is_published" value="1" {{if .Testimonial.IsPublished}}checked{{end}}> Tampilkan di website
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="settings-section" style="margin-bottom:0;">
+        <div style="display:flex; gap:12px; padding:20px 30px; align-items:center; justify-content:space-between;">
+          <div style="display:flex; gap:12px;">
+            <button type="submit" class="btn-gold" style="padding: 14px 36px; font-size: 0.9rem; display:flex; align-items:center; gap:8px;">
+              <i data-feather="save" style="width:16px;height:16px;"></i> {{if .IsNew}}Tambah Testimoni{{else}}Simpan Perubahan{{end}}
+            </button>
+            <a href="/admin/testimonials" class="btn-outline" style="padding: 14px 36px; font-size: 0.9rem; display:flex; align-items:center; gap:8px;">
+              <i data-feather="arrow-left" style="width:16px;height:16px;"></i> Kembali
+            </a>
+          </div>
+          <div style="font-size:0.8rem;color:var(--text-muted);">
+            <i data-feather="alert-circle" style="width:14px;height:14px;vertical-align:middle;"></i> Semua perubahan akan langsung tampil di halaman publik.
+          </div>
+        </div>
+      </div>
+    </form>
+{{template "adminfoot" .}}{{end}}

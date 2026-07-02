@@ -1,0 +1,75 @@
+/* Legality */
+.legality {
+  background-color: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+
+.legality::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: -40px;
+  width: 250px;
+  height: 250px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232f6b4f' stroke-width='0.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22c4-4 8-8 8-14a6 6 0 0 0-12 0c0 6 4 10 8 14z'/%3E%3Cpath d='M12 22V8'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.1;
+  z-index: 0;
+  transform: rotate(30deg) scaleX(-1);
+}
+
+.legality .container {
+  position: relative;
+  z-index: 1;
+}
+
+.legality-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.legality-card {
+  background-color: var(--white);
+  padding: 32px;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(47, 107, 79, 0.1);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: var(--transition);
+}
+
+.legality-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.legality-card svg {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+}
+
+.legality-card h3 {
+  color: var(--green-dark);
+  margin-bottom: 12px;
+  font-size: 1.25rem;
+}
+
+.legality-card p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.problem-flow p {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.problem-flow p:last-child {
+  margin-bottom: 0;
+}
+

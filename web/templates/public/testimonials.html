@@ -1,0 +1,23 @@
+{{define "testimonials"}}
+<section class="testimonials section-padding" id="testimoni">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Apa Kata Konsumen?</h2>
+      </div>
+      <div class="testimonials-grid">
+        {{range .Testimonials}}
+        <div class="testimonial-card fade-in">
+          <blockquote>"{{.Quote}}"</blockquote>
+          <div class="reviewer">
+            <div class="avatar">U</div>
+            <div class="reviewer-info"><span class="name">{{.Author}}</span><span class="role">{{.Role}}</span></div>
+          </div>
+        </div>
+        {{end}}
+      </div>
+      <div class="testimonial-note fade-in">
+        <p>Catatan: Testimoni asli dapat diganti dengan ulasan pembeli dari marketplace resmi Insuvit pada versi final.</p>
+      </div>
+    </div>
+  </section>
+{{end}}
