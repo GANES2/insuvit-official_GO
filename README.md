@@ -1,7 +1,7 @@
 # Insuvit Web & Admin Dashboard 🚀
 
-![Admin Dashboard Preview](./docs/admin-login-preview.png)
-*(Catatan: Silakan ganti path gambar di atas dengan lokasi asli file foto screenshot/dashboard Anda)*
+![Admin Login Preview](./docs/admin-login-preview.png)
+![Admin Dashboard Preview](./docs/admin-dashboard-preview.png)
 
 **🌐 Live Website:** [https://insuvitofficial-4f5vpe8y.b4a.run](https://insuvitofficial-4f5vpe8y.b4a.run)
 
